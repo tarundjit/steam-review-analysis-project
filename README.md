@@ -11,7 +11,8 @@ A PostgreSQL database named `player_feedback` was created. A staging table, `rev
 
 ## Phase 2: Data Cleaning and Transformation
 A final, structured table named `reviews` was created with correctly defined data types. A SQL script was then executed to perform the following transformations while loading the data from `reviews_raw` into the final `reviews` table:
-* **Type Casting:** Converted columns like `review_id` and `app_id` from `TEXT` to `BIGINT` and `INT`.
+* **Type Casting:** Converted columns from `TEXT` to their proper numeric types (`BIGINT`, `INT`).
 * **Text Cleaning:** Used `TRIM()` to remove leading/trailing whitespace from text fields.
-* **Conditional Logic:** Used a `CASE` statement to transform the `review_score` column ('1' or '-1') into a more usable `BOOLEAN` column named `is_recommended`.
-* **Handling Nulls:** Used `COALESCE()` to ensure any null `review_votes` were converted to `0`.
+* **Conditional Logic:** Used a `CASE` statement to transform the `review_score` column into a more usable `BOOLEAN` column named `is_recommended`.
+* **Handling Nulls:** Used `COALESCE()` to convert any null `review_votes` into a default value of `0`.
+* **Data Validation:** Records with `NULL` or empty `app_name` values were deleted to ensure the quality of the final dataset.

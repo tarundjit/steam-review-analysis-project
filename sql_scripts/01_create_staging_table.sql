@@ -1,4 +1,4 @@
--- sql_scripts/01_create_staging_table.sql (Corrected)
+-- This script replaces 01_create_staging_table.sql
 CREATE TABLE reviews_raw (
     app_id TEXT,
     app_name TEXT,

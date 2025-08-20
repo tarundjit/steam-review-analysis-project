@@ -1,5 +1,5 @@
 CREATE TABLE reviews (
-    review_id BIGSERIAL PRIMARY KEY, 
+    review_id BIGSERIAL PRIMARY KEY,
     app_id INT,
     app_name TEXT,
     review_text TEXT,
