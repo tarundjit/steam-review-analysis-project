@@ -6,8 +6,7 @@ SELECT
     TRIM(review_text),
     CASE
         WHEN review_score = '1' THEN true
-        WHEN review_score = '-1' THEN false
-        ELSE null
+        ELSE false
     END AS is_recommended,
     COALESCE(CAST(review_votes AS INT), 0)
 FROM
