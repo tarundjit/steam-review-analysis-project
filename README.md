@@ -36,3 +36,12 @@ With the data cleaned and structured, an initial exploratory analysis was perfor
 * **Most Voted-On Games:** The games whose reviews receive the most "helpful" votes are largely the same as the most-reviewed games, indicating strong community engagement with these major titles.
 
 * **Script:** [`04_summary_stats.sql`](./sql_scripts/04_summary_stats.sql)
+
+## Phase 4: Advanced Analysis with Window Functions
+To find deeper insights, window functions were used to rank and compare reviews within specific groups without losing the detail of individual rows.
+
+### Key Findings:
+* **Top Reviews:** The `RANK()` function was used to identify and rank the most helpful reviews for highly popular games like "Counter-Strike," revealing what the community values most in their feedback.
+* **Segmented Analysis:** By using `PARTITION BY`, we were able to find the single most helpful positive and negative review for each of the top 5 most-reviewed games. This technique allows for powerful analysis of different segments (e.g., positive vs. negative sentiment) within larger groups.
+
+* **Script:** [`05_window_functions.sql`](./sql_scripts/05_window_functions.sql)

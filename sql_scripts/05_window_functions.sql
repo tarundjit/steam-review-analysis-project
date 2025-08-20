@@ -7,25 +7,39 @@ SELECT
 FROM
     reviews
 WHERE
-    app_name = 'Counter-Strike: Source' 
+    app_name = 'Counter-Strike'
 LIMIT 10;
 
--- Query 2: Find the most helpful review for each major game franchise
-WITH RankedReviews AS (
+-- Query 2: For the top 5 games, find the most helpful positive and negative review for each.
+WITH TopGames AS (
+    -- First, identify the top 5 most-reviewed games
     SELECT
-        app_name,
-        review_text,
-        review_votes,
-        -- Create a rank partitioned by the game's main franchise name
-        RANK() OVER (PARTITION BY SPLIT_PART(app_name, ':', 1) ORDER BY review_votes DESC) as review_rank
+        app_name
     FROM
         reviews
-    WHERE
-        -- Filter for popular franchises that are likely to have multiple entries
-        app_name ILIKE 'Counter-Strike%' OR app_name ILIKE 'Grand Theft Auto%' OR app_name ILIKE 'Half-Life%' OR app_name ILIKE 'Sid Meier''s Civilization%'
+    GROUP BY
+        app_name
+    ORDER BY
+        COUNT(review_id) DESC
+    LIMIT 5
+),
+RankedReviews AS (
+    -- Next, rank reviews only for those top games
+    SELECT
+        r.app_name,
+        r.review_text,
+        r.review_votes,
+        r.is_recommended,
+        RANK() OVER (PARTITION BY r.app_name, r.is_recommended ORDER BY r.review_votes DESC) as review_rank
+    FROM
+        reviews r
+    JOIN
+        TopGames tg ON r.app_name = tg.app_name
 )
+-- Finally, select the #1 ranked review from each partition
 SELECT
     app_name,
+    is_recommended,
     review_text,
     review_votes
 FROM
@@ -33,4 +47,4 @@ FROM
 WHERE
     review_rank = 1
 ORDER BY
-    review_votes DESC;
+    app_name, is_recommended;
