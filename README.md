@@ -31,9 +31,9 @@ A final, structured table named `reviews` was created with correctly defined dat
 With the data cleaned and structured, an initial exploratory analysis was performed to get a high-level understanding of the dataset.
 
 ### Key Findings:
-* **Most Reviewed Games:** The dataset is heavily dominated by major titles like "Counter-Strike: Global Offensive" and "Dota 2", each having hundreds of thousands of reviews.
-* **Overall Sentiment:** The overall sentiment across all 7 million+ reviews is highly positive, with a recommendation rate of approximately 87-88%.
-* **Most Voted-On Games:** The games whose reviews receive the most "helpful" votes are largely the same as the most-reviewed games, indicating strong community engagement with these major titles.
+* **Most Reviewed Games:** The dataset is heavily dominated by major free-to-play titles like "Dota 2" and "Counter-Strike: Global Offensive".
+* **Overall Sentiment:** The sentiment across all reviews is highly positive, with a recommendation rate of approximately 87-88%.
+* **"Helpful" Reviews:** The games with the highest number of reviews marked as "helpful" by the community are largely the same as the most-reviewed games, indicating strong engagement with these major titles.
 
 * **Script:** [`04_summary_stats.sql`](./sql_scripts/04_summary_stats.sql)
 

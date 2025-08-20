@@ -22,14 +22,14 @@ FROM
     reviews;
 
 
--- Query 3: Which games have the highest number of "helpful" votes?
+-- Query 3 (Revised): Which games have the highest number of helpful reviews?
 SELECT
     app_name,
-    SUM(review_votes) AS total_helpful_votes
+    COUNT(*) FILTER (WHERE review_votes = 1) AS helpful_review_count
 FROM
     reviews
 GROUP BY
     app_name
 ORDER BY
-    total_helpful_votes DESC
+    helpful_review_count DESC
 LIMIT 20;
