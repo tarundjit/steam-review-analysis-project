@@ -10,3 +10,26 @@ GROUP BY
 ORDER BY
     number_of_reviews DESC
 LIMIT 20;
+
+
+-- Query 2: What is the overall recommendation rate?
+SELECT
+    ROUND(
+        (COUNT(*) FILTER (WHERE is_recommended = true)::numeric / COUNT(*)) * 100,
+        2
+    ) AS recommendation_rate_percent
+FROM
+    reviews;
+
+
+-- Query 3: Which games have the highest number of "helpful" votes?
+SELECT
+    app_name,
+    SUM(review_votes) AS total_helpful_votes
+FROM
+    reviews
+GROUP BY
+    app_name
+ORDER BY
+    total_helpful_votes DESC
+LIMIT 20;
