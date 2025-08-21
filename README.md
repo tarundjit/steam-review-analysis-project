@@ -44,3 +44,14 @@ To find deeper insights, window functions were used to rank and compare reviews 
 * **Segmented Analysis:** By using `RANK() OVER (PARTITION BY ...)` we were able to perform a sub-group analysis. The query successfully identified the top 3 longest positive and negative reviews for each of the top 5 most-reviewed games. This technique is powerful for finding the most detailed feedback from different sentiment groups for a specific product.
 
 * **Script:** [`05_window_functions.sql`](./sql_scripts/05_window_functions.sql)
+
+## Phase 5: Text Mining & Full-Text Search
+To analyze the content of the reviews, a dedicated searchable table was created for a subset of the data. PostgreSQL's Full-Text Search capabilities were then used to find reviews mentioning specific themes.
+
+### Key Findings:
+* **Sentiment on Technical Issues:** An analysis of reviews mentioning words like "bug," "crash," or "performance" showed a significantly lower recommendation rate compared to the overall average, quantifying the impact of technical issues on player sentiment.
+* **Positive Themes:** Full-Text Search was also used to identify highly-voted positive reviews that specifically praised key aspects like "gameplay" and "story," providing insight into what drives positive feedback.
+
+* **Scripts:**
+    * [`06_text_search_setup.sql`](./sql_scripts/06_text_search_setup.sql)
+    * [`07_text_analysis.sql`](./sql_scripts/07_text_analysis.sql)

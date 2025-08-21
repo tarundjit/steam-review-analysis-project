@@ -11,17 +11,17 @@ WHERE
 
 
 
--- QUery 2: Find any highly-voted positive reviews mentioning 'fun'
+-- Query 2: Find positive reviews that mention key themes
 SELECT
     app_name,
     review_text,
     review_votes
 FROM
-    reviews -- Searching the main table, not the searchable subset
+    reviews_searchable
 WHERE
     is_recommended = true
-    AND review_votes > 50
-    AND review_text ILIKE '%fun%' -- Simple, direct text search
+    AND review_votes >= 1
+    AND review_vector @@ to_tsquery('english', '(gameplay | story) & fun')
 ORDER BY
     review_votes DESC
 LIMIT 10;
